@@ -1,17 +1,21 @@
 import React from 'react';
 import './App.css';
-import Main from './MainComponent/Main';
-import { Provider } from "react-redux";
-import { store } from './redux/store';
+import { connect } from "react-redux";
 
-function App() {
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+const App = props => {
   return (
-    <Provider store={store}>
       <div className="App">
-        <Main />
+
       </div>
-    </Provider>
   );
 }
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);
