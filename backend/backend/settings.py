@@ -127,3 +127,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+# CORS headers
+
+CORS_ORIGIN_ALLOW_ALL = DEBUG
