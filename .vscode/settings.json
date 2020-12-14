@@ -1,4 +1,7 @@
 {
     "jshint.packageManager": "yarn",
-    "jshint.options": {"esversion":6}
+    "jshint.options": {
+        "esversion": 6
+    },
+    "python.pythonPath": "C:\\Users\\GEEKZONE\\.virtualenvs\\backend-EsBFQpSU\\Scripts\\python.exe"
 }
