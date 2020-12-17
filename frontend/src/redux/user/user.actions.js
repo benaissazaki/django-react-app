@@ -69,7 +69,7 @@ export const loginSuccessful = (userInfos) => ({
     payload: userInfos
 })
 
-export const loginFailed = (errorMessage) = ({
+export const loginFailed = (errorMessage) => ({
     type: Types.LOGIN_FAILED,
     payload: errorMessage
 })

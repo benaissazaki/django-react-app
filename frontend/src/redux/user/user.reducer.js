@@ -2,7 +2,7 @@ import * as Types from "./user.types";
 
 const initialState = {
     isAuthenticated: false,
-    logging: false,
+    logging: true,
     loginChecked: false,
     loginFailed: false,
     errorMessage: "",
