@@ -6,26 +6,24 @@ import { apiUrl } from "../../shared/apiUrl";
 // Thunk actions
 
 export const checkLogin = () => dispatch => {
-    return dispatch(logging(true)).then(() =>
-        localStorage.getItem("access_token")
-            .then((accessToken) => {
-                if (accessToken) {
-                    const jwt = jwt_decode(accessToken);
-                    const current_time = new Date().getTime() / 1000;
+    dispatch(logging(true));
+    Promise.resolve(localStorage.getItem("access_token"))
+        .then((accessToken) => {
+            if (accessToken) {
+                const jwt = jwt_decode(accessToken);
+                const current_time = new Date().getTime() / 1000;
 
-                    if (current_time > jwt.exp) {
-                        return dispatch(unauthenticated(true));
-                    }
-
-                    else {
-                        return dispatch(getUserInfos(true)).then(response => dispatch(loginSuccessful(response.data)));
-                    }
-                } else {
+                if (current_time > jwt.exp) {
                     return dispatch(unauthenticated(true));
                 }
-            })
 
-    )
+                else {
+                    return dispatch(getUserInfos(true)).then(response => dispatch(loginSuccessful(response.data)));
+                }
+            } else {
+                return dispatch(unauthenticated(true));
+            }
+        })
 }
 
 export const login = (credentials) => dispatch => {

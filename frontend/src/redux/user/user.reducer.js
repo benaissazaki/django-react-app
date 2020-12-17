@@ -12,7 +12,7 @@ const initialState = {
 export const user = (state = initialState, action) => {
     switch (action.type) {
         case Types.UNAUTHENTICATED:
-            return { ...initialState, loginChecked: true }
+            return { ...initialState, logging: false, loginChecked: true }
 
         case Types.LOGGING:
             return { ...initialState, logging: true }
