@@ -22,7 +22,10 @@ export const user = (state = initialState, action) => {
 
         case Types.LOGIN_FAILED:
             return { ...state, isAuthenticated: false, logging: false, loginChecked: true, loginFailed: true, errorMessage: action.payload }    
-                
+            
+        case Types.DISMISS_ERRMESS:
+            return {...state, loginFailed: false }
+
         default:
             return state;
     }
