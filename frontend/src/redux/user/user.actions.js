@@ -18,7 +18,7 @@ export const checkLogin = () => dispatch => {
                 }
 
                 else {
-                    return dispatch(getUserInfos(true)).then(response => dispatch(loginSuccessful(response.data)));
+                    return dispatch(getUserInfos(true));
                 }
             } else {
                 return dispatch(unauthenticated(true));
@@ -41,7 +41,9 @@ export const login = (credentials) => dispatch => {
 export const getUserInfos = () => dispatch => {
     const access = localStorage.getItem("access_token");
     return axios.get(`${apiUrl}api/user/`, {
-        Authorization: `Bearer ${access}`
+        headers: {
+            Authorization: `Bearer ${access}`
+        }
     })
         .then(response => dispatch(loginSuccessful(response.data)))
 }
