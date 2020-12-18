@@ -1,0 +1,9 @@
+#loading {
+    height: 100vh;
+}
+
+#loading .MuiCircularProgress-root {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
