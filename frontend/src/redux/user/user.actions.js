@@ -5,8 +5,8 @@ import { apiUrl } from "../../shared/apiUrl";
 
 // Thunk actions
 
-export const checkLogin = () => dispatch => {
-    dispatch(logging(true));
+export const checkLogin = (getInfos=true) => dispatch => {
+    getInfos && dispatch(logging(true));
     Promise.resolve(localStorage.getItem("access_token"))
         .then((accessToken) => {
             if (accessToken) {
@@ -14,16 +14,17 @@ export const checkLogin = () => dispatch => {
                 const current_time = new Date().getTime() / 1000;
 
                 if (current_time > jwt.exp) {
-                    return dispatch(unauthenticated(true));
+                    throw new Error("Expired login session");
                 }
 
-                else {
+                else if(getInfos) {
                     return dispatch(getUserInfos(true));
                 }
             } else {
                 return dispatch(unauthenticated(true));
             }
         })
+        .catch(error => dispatch(unauthenticated(true)))
 }
 
 export const login = (credentials) => dispatch => {
@@ -52,7 +53,6 @@ export const logout = () => dispatch => {
     localStorage.clear();
     return dispatch(unauthenticated(true));
 }
-
 
 // Standard actions
 
